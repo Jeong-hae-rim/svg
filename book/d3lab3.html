@@ -5,6 +5,9 @@
 		<title>SVG로 그리기</title>
 	</head>
 	<script src="d3.v3.min.js"></script>
+	<style>
+	svg { width: 320px; height: 240px;}
+	</style>
 	<body>
 		<h1>문자의 글꼴 지정</h1>
 		<svg >
@@ -14,14 +17,26 @@
 		</svg>
 		
 		<script>
+		var arr=['둘리','또치','도우너','마이콜','희동이'];
+		var bindtext = d3.select('svg')
+	                     .selectAll("text")
+	                     .data(["둘리", "또치", "도우너", "마이콜", "희동이"]);
 		
-		d3.select('body')
-	      .selectAll("text")
-	      .data(["둘리", "또치", "도우너", "마이콜", "희동이"])
-	      .text(function(d){return d})
-	      .enter()
-	      .append("text")
-	      .text(function(d){return d})
+		 bindtext.text(function(d){console.log(d); return d})
+		
+		 bindtext.enter()
+	             .append("text")
+		         .attr("x","25")
+		         .attr("y", function(d, i){return 40*(i+1);})
+		         .style("font-family", function(d,i){	// 2번째의 파라미터에 함수를 지정
+			              if(i == 3){	// 순서를 조사
+			              return "바탕";	// 3번째라면 빨간색을 나타내는 문자를 반환
+			              }	else if (i == 4){
+			            	  return "고딕";
+			              }
+		                })
+		         .style("font-size", "24px")
+		         .text(function(d){console.log(d); return d})
 		</script>
 	</body>
 </html>
