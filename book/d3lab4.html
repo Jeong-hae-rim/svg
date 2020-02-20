@@ -21,8 +21,11 @@
 			console.log(data);
 			var dataSet = [ ];						// 데이터를 저장할 배열을 준비
 			for(var i=0; i<data.length; i++){	// 데이터의 줄 수만큼 반복
-				dataSet.push(data[i].item2);	// item1 레이블의 데이터만 추출
+				dataSet.push(parseInt(data[i].item2));	// item1 레이블의 데이터만 추출
 			}
+			
+			/* console.log(dataSet);
+			console.log(d3.extent(dataSet)); */
 			
 			var newRamp = d3.scale.linear().domain(d3.extent(dataSet)).range(["yellow","blue"]);
 			console.log(newRamp);
