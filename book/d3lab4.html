@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>실습(그래프)</title>
+		<style>
+			/* #myGraph rect {
+				stroke-width : 1px;
+				fill : rgb( 255, 0, 0 );
+			} */
+		</style>
+		<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+	</head>
+	<body>
+		<h1>실습(그래프)</h1>
+		<hr>
+		<svg id="myGraph" width="400"></svg>
+		<script>
+		// CSV 파일을 불러와 그래프 그리기
+		d3.csv("mydata.csv", function(error, data){
+			console.log(data);
+			var dataSet = [ ];						// 데이터를 저장할 배열을 준비
+			for(var i=0; i<data.length; i++){	// 데이터의 줄 수만큼 반복
+				dataSet.push(data[i].item2);	// item1 레이블의 데이터만 추출
+			}
+			
+			var newRamp = d3.scale.linear().domain(d3.extent(dataSet)).range(["yellow","blue"]);
+			console.log(newRamp);
+			
+			d3.select("#myGraph")		
+				.selectAll("rect")			
+				.data(dataSet)				
+				.enter()							
+				.append("rect")				
+				.attr("x", 0)					
+				.attr("y", function(d,i){	
+					return i * 25;			
+				})
+				.attr("height", "20px")			
+				.attr("width", function(d, i){
+					return d +"px";					
+				})
+				.style("fill", function(d, i){
+					return newRamp(d);					
+				})
+			
+			d3.selectAll("rect").on("click", function(d, i){
+				var num = dataSet[i];
+				alert(num);
+			})
+		});
+		</script>
+	</body>
+</html>
