@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<body>
+<h1>토끼!</h1>
+<hr>
+<svg width="500px" height="500px"">
+ 
+ <g id="rabbitear" style="fill: none; stroke: black;">
+    <desc>rabbit ear</desc>
+    <g transform="translate(0, -100)">
+     <ellipse cx="140" cy="200" rx="30" ry="80"
+       style="fill:#F6CED8;" />
+     <ellipse cx="260" cy="200" rx="30" ry="80"
+       style="fill:#F6CED8;"/>
+    </g>
+     <g transform="translate(0, -100)" style="stroke: none;">
+     <ellipse cx="140" cy="200" rx="20" ry="60"
+       style="fill:#F5A9A9;" />
+     <ellipse cx="260" cy="200" rx="20" ry="60"
+       style="fill:#F5A9A9;"/>
+    </g>
+ </g>
+ 
+ 
+  <g id="rabbitface" style="fill: none; stroke: black;">
+    <desc>rabbit face</desc>
+    <circle cx="200" cy="200" r="100" style="fill:#F6CED8;"/>
+  </g> 
+  
+    <g  id="rabbiteye" transform="translate(0, -20)">
+     <ellipse cx="150" cy="200" rx="10" ry="30"
+       style="fill:black;" />
+     <ellipse cx="240" cy="200" rx="10" ry="30"
+       style="fill:black;"/>
+    </g>
+    
+    <g transform="translate(0, -30)">
+     <ellipse cx="150" cy="200" rx="5" ry="10"
+       style="fill:white;" />
+     <ellipse cx="240" cy="200" rx="5" ry="10"
+       style="fill:white;"/>
+    </g>
+    
+    <g transform="translate(110, 150)">
+    <line x1="200" y1="200" x2="200" y2="200"/>
+    <polyline points="76 104, 85 80, 94 104" />
+    <polyline points="76 70, 85 76, 94 70" />
+    </g>
+</svg>
+        <script>
+        setInterval(function(){
+        var color1 = Math.floor(Math.random()*255)+1;
+        var color2 = Math.floor(Math.random()*255)+1;
+        var color3 = Math.floor(Math.random()*255)+1;
+        var r = color1.toString(16);
+        var g = color2.toString(16);
+        var b = color3.toString(16);
+        
+        var color = '#' +r+g+b;
+	
+		 d3.select("svg").select("#rabbiteye").selectAll("ellipse").transition().style("fill", color);
+        }, 500);
+		</script>
+</body>
+</html>
